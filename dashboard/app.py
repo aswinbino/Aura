@@ -42,7 +42,7 @@ html, body, [class*="css"], .stApp {
     letter-spacing: -0.01em;
 }
 
-/* Hide Streamlit Deploy Button & Header Chrome */
+/* Hide Streamlit Deploy Button, Header Chrome, Footer, Contributors */
 [data-testid="stDeployButton"],
 .stDeployButton,
 [data-testid="stHeaderActionElements"],
@@ -50,7 +50,17 @@ html, body, [class*="css"], .stApp {
 div[data-testid="stToolbar"],
 button[kind="header"],
 #MainMenu,
-footer {
+footer,
+.viewerBadge_container__1QSob,
+.viewerBadge_link__1S137,
+[data-testid="stStatusWidget"],
+span.css-fblp2m,
+.css-fblp2m,
+.css-1dp5vir,
+div[class*="reportview"] footer,
+.streamlit-footer,
+[data-testid="stFooter"],
+footer[data-testid="stFooter"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -396,6 +406,18 @@ def predict_risk(amount, is_night, rolling_avg, rolling_txn, time_gap, velocity_
         elif amount > 20000: prob += 0.2
         if is_night: prob += 0.15
         if velocity_score > 5: prob += 0.2
+
+    # ── Real-world amount-based overrides ──────────────────────────────
+    # Small everyday payments should never be high risk
+    if amount <= 2000 and not is_night:
+        prob = min(prob, 0.30)          # cap at 30 → score max 30, always safe
+    elif amount <= 2000 and is_night:
+        prob = min(prob, 0.45)          # small night payment → max medium
+    elif amount <= 10000:
+        prob = min(prob, 0.60)          # medium payment → cap below high-risk threshold
+    # Large transfers (>1 lakh) should always be elevated
+    if amount > 100000:
+        prob = max(prob, 0.72)
     prob = max(0.03, min(prob, 0.97))
     risk_score = int(prob * 100)
     if amount > 70000 or velocity_score > 7:
@@ -684,10 +706,13 @@ elif page == "UPI Payment":
 
         else:
             tx = st.session_state.upi_last_tx
+            if tx is None:
+                st.session_state.upi_paid = False
+                st.rerun()
             rs = tx["risk_score"]
             risk = tx["risk"]
 
-            if risk == 0 and rs < 50:
+            if risk == 0:
                 note_line = f"<div style='font-size:0.78rem; color:#6c757d; margin-top:6px;'>Remarks: {tx['note']}</div>" if tx['note'] else ""
                 status_html = f"""<div class="payment-success">
 <span class="status-pill success">Payment Cleared</span>
